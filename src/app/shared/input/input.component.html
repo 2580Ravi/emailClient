@@ -1,0 +1,26 @@
+<div class="field">
+  <label>{{label}}</label>
+  <input [type]="type" [formControl]="formControl" *ngIf="controlType === 'input'">
+
+  <textarea *ngIf="controlType==='textArea'" [formControl]="formControl"></textarea>
+
+  <div class="ui pointing red basic label" *ngIf="showErrors()">
+    <p *ngIf="formControl.getError('required') && formControl.touched">Value id Required</p>
+    <p *ngIf="formControl.getError('minlength')">
+      Value entered is {{formControl.getError('minlength').actualLength}}
+       characters long, but it must be atleast
+       {{ formControl.getError('minlength').requiredLength }} characters
+    </p>
+    <p *ngIf="formControl.getError('email')">
+      Enter a valid Email
+    </p>
+    <p *ngIf="formControl.getError('maxlength')">
+      Value entered is {{formControl.getError('maxlength').actualLength}}
+       characters long, but it must be atmost
+       {{ formControl.getError('maxlength').requiredLength }} characters
+    </p>
+    <p *ngIf="formControl.getError('pattern')">Invalid Format</p>
+    <p *ngIf="formControl.getError('nonUniqueUsername')">Username Already Taken</p>
+    <p *ngIf="formControl.getError('noConnection')">Please check the Internet Connection</p>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h3>Create an Account</h3>
+<form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
+    <app-input label="Username" [type]="'text'" [control]="getControl('username')"></app-input>
+    <app-input label="Password" [type]="'password'" [control]="getControl('password')"></app-input>
+    <app-input label="Password Comfirmation" [type]="'password'" [control]="getControl('passwordConfirmation')"></app-input>
+    <div class="ui red basic label" *ngIf="getControl('password').touched && getControl('passwordConfirmation').touched && authForm.errors">
+      <p *ngIf="authForm.getError('passWordsDontMatch')">
+        Password and Password Confirmation must Match
+      </p>
+      <p *ngIf="authForm.getError('noConnection')">
+        Something went wrong
+      </p>
+    </div>
+    <div>  <button class="ui submit button primary">Submit</button></div>
+</form>
